@@ -4,7 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose")
-const session = require('express-session');
+const session = require('express-session'); //Bug1: express-session deprecated
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -113,6 +113,7 @@ app.get("/secrets", function(req, res) {
     });
 });
 
+// Bug2: req.isAuthenticated()
 app.get("/submit", function(req, res){
   if (req.isAuthenticated()){
     res.render("submit");
